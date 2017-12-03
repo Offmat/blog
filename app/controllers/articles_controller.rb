@@ -35,4 +35,10 @@ class ArticlesController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    @article = Article.find(params[:id]) # dlaczego zmienne instancyjne a nie lokalne?
+    @article.destroy
+    redirect_to articles_path
+  end
 end
