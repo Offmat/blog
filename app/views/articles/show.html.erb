@@ -3,14 +3,26 @@
 </h1>
 
 <p>
-  <strong>Title:</strond>
+  <strong>Title:</strong>
   <%= @article.title %>
 </p>
-
 <p>
-  <strong>Text:</strond>
+  <strong>Text:</strong>
   <%= @article.text %>
 </p>
+<br>
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter: </strong>
+    <%= comment.commenter %>
+  </p>
+  <p>
+    <strong>Comment: </strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
 <%= form_for(@article.comments.build) do |f| %>
   <%= f.hidden_field :article_id %>
   <p>
