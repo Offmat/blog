@@ -1,23 +1,18 @@
 <h1>List Of Articles</h1>
-<table>
-  <tr>
-    <td>Title</td>
-    <td>Text</td>
-    <td></td>
-  </tr>
-  <% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.text %></td>
-    <td>
-    | <%= link_to 'Show', article %>
-    | <%= link_to 'Edit', edit_article_path(article) %>
-    | <%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+  <div class="list-group">
+    <% @articles.each do |article| %>
+      <div class="list-group-item">
+        <h2 class="list-group-item-heading" ><%= article.title %></h2>
+        <p class="list-group-item-text" ><%= article.text %></p>
+        <p class="list-group-item-text" >
+          <%= link_to 'Show', article, class: "btn btn-primary btn-sm" %>
+          <%= link_to 'Edit', edit_article_path(article), class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Destroy', article_path(article), class: "btn btn-danger btn-lg" ,
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+        </p>
+      </div>
 
+    <% end %>
+  </div>
 <p><%= link_to 'New article', new_article_path %></p>

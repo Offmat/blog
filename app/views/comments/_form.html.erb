@@ -1,15 +1,19 @@
 <%= form_for([@article, @comment]) do |f| %>
   <%= render 'common/error_messages', model: @comment %>
 
+  <div class="form-group">
+    <p>
+      <%= f.label :commenter %>
+      <%= f.text_field :commenter, class: "form-control" %>
+    </p>
+    </div>
+  <div class="form-group">
+    <p>
+      <%= f.label :body %>
+      <%= f.text_area :body, class: "form-control" %>
+    </p>
+  </div>
   <p>
-    <%= f.label :commenter %>
-    <%= f.text_field :commenter %>
-  </p>
-  <p>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-default" %>
   </p>
 <% end %>
