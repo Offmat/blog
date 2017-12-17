@@ -10,8 +10,21 @@
 
   <body>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+
+    <% if notice %>
+      <div class="alert alert-info">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="alert-danger">
+        <%= alert %>
+      </div>
+
+
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>

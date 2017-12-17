@@ -51,10 +51,10 @@ class ArticlesController < ApplicationController
 
   def authorize_article
     if @article.author != current_user
-      redirect_to articles_path
+      redirect_to articles_path, alert: "You are not authorized do use this option!"
     end
   end
-  
+
   def article_params
     params.require(:article).permit(:title, :text, :tags)
   end
