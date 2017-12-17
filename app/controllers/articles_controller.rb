@@ -1,13 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
   before_action :authorize_article, only: [:edit, :update, :destroy]
+
   def index
     if params[:q].present?
-      @articles = Article.all.order(created_at: :desc).select do |article|
+      @articles = Article.includes(:author).order(created_at: :desc).select do |article|
         article.tags.include?(params[:q])
       end
     else
-      @articles = Article.all.order(created_at: :desc)
+      @articles = Article.includes(:author).order(created_at: :desc)
     end
 
   end
@@ -60,7 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def find_article
-    # binding.pry
     @article = Article.find(params[:id])
   end
 end
