@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
 
   def authorize_article
     if @article.author != current_user
-      redirect_to articles_path, alert: "You are not authorized do use this option!" #jak tu dodałem params[:action] to mi wypluł że nie zna id="edit" w find article.
+      redirect_to articles_path, alert: "You are not authorized to #{params[:action]} this article!"
     end
   end
 
@@ -60,6 +60,7 @@ class ArticlesController < ApplicationController
   end
 
   def find_article
+    # binding.pry
     @article = Article.find(params[:id])
   end
 end
