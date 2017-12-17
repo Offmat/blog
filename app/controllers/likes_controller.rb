@@ -1,5 +1,8 @@
 class LikesController < ApplicationController
   def create
-    @article = Article.find(params[:id])
+    like = Like.new(article_id: params[:article_id], user: current_user)
+    like.save
+
+    redirect_to article_path(like.article)
   end
 end

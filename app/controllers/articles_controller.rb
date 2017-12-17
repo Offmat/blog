@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @like = Like.new
     @comment = Comment.new(commenter: current_user.email)
   end
 

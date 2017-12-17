@@ -26,7 +26,15 @@
 
 <%= render 'comments/form' %>
 
+<p>
+  <%= form_for [@article, @like] do |f| %>
+    <p>
+      <%= f.submit "Like", class: "btn btn-default" %>
+    </p>
+  <% end %>
+
+</p>
 
 <p>
-  <%= link_to 'Back', articles_path %>
+  <%= link_to 'Back', articles_path, class: "btn btn-primary btn-xs"%>
 </p>
