@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_article, only: [:edit, :update, :destroy]
   def index
     if params[:q].present?
       @articles = Article.all.order(created_at: :desc).select do |article|
@@ -27,14 +27,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(commenter: session[:commenter])
-
+    @comment = Comment.new(commenter: current_user.email)
   end
 
   def edit
-    if @article.author != current_user
-      redirect_to articles_path
-    end
   end
 
   def update
@@ -52,6 +48,13 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def authorize_article
+    if @article.author != current_user
+      redirect_to articles_path
+    end
+  end
+  
   def article_params
     params.require(:article).permit(:title, :text, :tags)
   end
