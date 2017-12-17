@@ -13,21 +13,26 @@
     <% @articles.each do |article| %>
       <div class="list-group-item">
         <h2 class="list-group-item-heading" ><%= article.title %></h2>
+        <p class="list-group-item-text text-muted" >Author:<%= article.author.email %></p>
         <p class="list-group-item-text" ><%= article.text %></p>
         <p class="list-group-item-text text-info" >Tags:
           <% article.tags.each do |tag| %>
             #<%= tag %>
           <% end %>
         </p>
+
         <p class="list-group-item-text" >
           <%= link_to 'Show', article, class: "btn btn-primary btn-xs" %>
-          <%= link_to 'Edit', edit_article_path(article), class: "btn btn-warning btn-xs" %>
-          <%= link_to 'Destroy', article_path(article), class: "btn btn-danger btn-md" ,
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %>
+
+          <% if article.author == current_user %>
+            <%= link_to 'Edit', edit_article_path(article), class: "btn btn-warning btn-xs" %>
+            <%= link_to 'Destroy', article_path(article), class: "btn btn-danger btn-xs" ,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </p>
       </div>
 
     <% end %>
   </div>
-<p><%= link_to 'New article', new_article_path %></p>
+<p><%= link_to 'New article', new_article_path, class: "btn btn-primary btn-lg" %></p>

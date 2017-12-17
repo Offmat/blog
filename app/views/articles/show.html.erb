@@ -9,10 +9,15 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
+<p>
+  <strong>Author:</strong>
+  <%= @article.author.email %>
+</p>
 <br>
 
 
-<h2>Comments</h2>
+
+<h3>Comments</h3>
 
 <% @article.comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
