@@ -15,8 +15,13 @@
 </p>
 <br>
 
+<div>
+  <%= pluralize(@article.likes.count, "person") %>  likes this article
+</div>
+
+<br>
 <% if @like.persisted? %>
-  <%= link_to 'Dislike', article_like_path(@article, @like), method: :delete, class: "btn btn-danger" %>
+  <%= link_to 'Dislike', article_like_path(@article, @like), method: :delete, class: "btn btn-danger btn-xs" %>
 <% else %>
   <%= link_to 'Like', article_likes_path(@article), method: :post, class: "btn btn-primary btn-xs"%>
 <% end %>
