@@ -14,3 +14,34 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+
+// alert( 'Rails!!')
+window.addEventListener( "load", function () {
+  document.getElementById('q').value = "insert search tags";
+
+  document.getElementById('q').addEventListener( "mouseover", function () {
+    console.log("Mouse if on the search tab");
+  });
+
+  document.getElementById('q').addEventListener( "click", function () {
+    document.getElementById('q').value = "clicked";
+  });
+
+  // document.getElementById('q').addEventListener( "keypress", function () {
+  //   console.log(this.value);
+  // });
+
+});
+
+
+
+window.addEventListener( "load", function () {
+
+  document.getElementById('add').addEventListener( "click", function () {
+    var a = parseInt(document.getElementById('field1').value);
+    var b = parseInt(document.getElementById('field2').value);
+    var result = a + b;
+    document.getElementById('wynik').innerHTML = result
+  });
+
+});
