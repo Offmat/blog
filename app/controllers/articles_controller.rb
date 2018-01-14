@@ -11,6 +11,15 @@ class ArticlesController < ApplicationController
       @articles = Article.includes(:author).order(created_at: :desc)
     end
 
+    respond_to do |format|
+      format.json do
+        render json: @articles
+      end
+
+      format.html do
+        render
+      end
+    end
   end
 
   def new
