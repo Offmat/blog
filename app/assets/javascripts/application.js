@@ -71,9 +71,14 @@ window.addEventListener( "load", function () {
       request.responseType = 'json';
       request.addEventListener("load", function () {
         var summary = document.getElementById('summary-' + this.response.id);
-        summary.innerText = "Comments: " + this.response.comments +
-          ", Likes: " + this.response.likes;
-        summary.setAttribute('style', 'background: black; color: red')
+        if (summary.innerText == "Summary") {
+          summary.innerText = "Comments: " + this.response.comments +
+            ", Likes: " + this.response.likes;
+          summary.setAttribute('style', 'background: black; color: red')
+        } else {
+          summary.innerText = "Summary";
+          summary.removeAttribute('style');
+        }
       })
       request.send();
     })
