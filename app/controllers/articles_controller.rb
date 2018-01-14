@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :find_article, only: [:show, :edit, :update, :destroy, :summary]
   before_action :authorize_article, only: [:edit, :update, :destroy]
 
   def index
@@ -46,6 +46,18 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to articles_path
+  end
+
+  def summary
+    respond_to do |format|
+      format.json do
+        render json: {
+          id: @article.id,
+          likes: @article.likes.count,
+          comments: @article.comments.count
+        }
+      end
+    end
   end
 
   private

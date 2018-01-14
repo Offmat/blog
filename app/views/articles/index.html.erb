@@ -30,6 +30,8 @@
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
           <% end %>
+          <%= link_to 'Summary', summary_article_path(article),
+          class: "btn btn-primary btn-xs summary", id: "summary-#{article.id}" %>
         </p>
       </div>
 

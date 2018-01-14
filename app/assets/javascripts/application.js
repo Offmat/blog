@@ -46,15 +46,36 @@
 //
 // });
 
+// window.addEventListener( "load", function () {
+//   var newElement = document.createElement('h1');
+//   document.body.appendChild(newElement);
+//   var request = new XMLHttpRequest();
+//   request.open("GET", "http://localhost:3000/exercise.txt");
+//   request.responseType = 'json';
+//   request.addEventListener("load", function () {
+//     document.getElementById('q').value = this.response.var1;
+//     newElement.innerText = this.response.var2;
+//   });
+//   request.send();
+// })
+
+
+
 window.addEventListener( "load", function () {
-  var newElement = document.createElement('h1');
-  document.body.appendChild(newElement);
-  var request = new XMLHttpRequest();
-  request.open("GET", "http://localhost:3000/exercise.txt");
-  request.responseType = 'json';
-  request.addEventListener("load", function () {
-    document.getElementById('q').value = this.response.var1;
-    newElement.innerText = this.response.var2;
-  });
-  request.send();
+  var elements = document.querySelectorAll('.summary');
+  for( var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener("click", function(e) {
+      e.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open("GET", this.href + '.json');
+      request.responseType = 'json';
+      request.addEventListener("load", function () {
+        var summary = document.getElementById('summary-' + this.response.id);
+        summary.innerText = "Comments: " + this.response.comments +
+          ", Likes: " + this.response.likes;
+        summary.setAttribute('style', 'background: black; color: red')
+      })
+      request.send();
+    })
+  }
 })
