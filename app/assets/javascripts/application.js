@@ -20,11 +20,11 @@ window.addEventListener( "load", function () {
   document.getElementById('q').value = "insert search tags";
 
   document.getElementById('q').addEventListener( "mouseover", function () {
-    console.log("Mouse if on the search tab");
+    if (this.value == "insert search tags") this.value = "";
   });
 
-  document.getElementById('q').addEventListener( "click", function () {
-    document.getElementById('q').value = "clicked";
+  document.getElementById('q').addEventListener( "mouseout", function () {
+    if (this.value == "") this.value = "insert search tags";
   });
 
   // document.getElementById('q').addEventListener( "keypress", function () {
