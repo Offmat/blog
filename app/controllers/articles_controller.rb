@@ -13,7 +13,9 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       format.json do
-        render json: @articles
+        render json: {
+          articles: @articles.count
+        }
       end
 
       format.html do
