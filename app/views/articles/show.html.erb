@@ -25,13 +25,15 @@
 <% else %>
   <%= link_to 'Like', article_likes_path(@article), method: :post, class: "btn btn-primary btn-xs"%>
 <% end %>
+<br>
+<div id="comments" style="display:none">
+  <h3>Comments</h3>
+  <% @article.comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>
 
-<h3>Comments</h3>
-
-<% @article.comments.each do |comment| %>
-  <%= render 'comments/comment', comment: comment %>
-<% end %>
-
+<button class="btn btn-primary" id="comments_btn" style="margin: 15px 0">Show comments</button>
 
 <%= render 'comments/form' %>
 
