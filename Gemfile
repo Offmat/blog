@@ -47,6 +47,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem "letter_opener"
+  gem 'foreman', require: false
 end
 
 group :development do
