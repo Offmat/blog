@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @like = Like.find_or_initialize_by(article: @article, user: current_user)
+    @like = Like.find_or_initialize_by(likeable: @article, user: current_user)
     @comment = Comment.new(commenter: current_user.email)
   end
 
