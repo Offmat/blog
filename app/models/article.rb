@@ -1,10 +1,9 @@
 class Article < ApplicationRecord
+  include Likeable
   mount_uploader :banner, BannerUploader
 
   has_many :comments, dependent: :destroy
   belongs_to :author, class_name: "User"
-  has_many :likes
-  has_many :users, through: :likes
 
   validates :title, presence: true, length: { minimum: 2 }
 
