@@ -5,7 +5,8 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :author, class_name: "User"
 
-  validates :title, presence: true, length: { minimum: 2 }
+  validates :title, presence: true, length: { minimum: 2 }, uniqueness: true
+  validates :text, presence: true
 
 
   def tags=(value)
